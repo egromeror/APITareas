@@ -25,7 +25,6 @@ namespace APITareas.Controllers
         }
 
         // GET api/Tarea/5
-        
         [HttpGet("{id}")]
         public ActionResult<Tarea> Get(int id)
         {
@@ -49,20 +48,43 @@ namespace APITareas.Controllers
             return Ok(Tarea);
         }
 
+        private int validarTarea(Tarea tarea)
+        {
+            if (string.IsNullOrEmpty(tarea.Nombre) || string.IsNullOrEmpty(tarea.Descripcion) || string.IsNullOrEmpty(tarea.Prioridad) || tarea.IdEstado <= 0)
+                return 400;
+
+            return 0;
+        }
+
         // POST api/Tarea
-        
         [HttpPost]
         public ActionResult<Tarea> Post([Bind("Id,Nombre,Descripcion,Prioridad,IdEstado")] Tarea tarea)
         {
-            var nuevoTarea = _TareaService.CrearTarea(tarea);
-            return CreatedAtAction(nameof(Get), new { id = nuevoTarea.Id }, nuevoTarea);
+            try 
+            {
+                int codigo = validarTarea(tarea);
+
+                if (codigo  > 0)
+                    return StatusCode(codigo ); 
+
+                var nuevoTarea = _TareaService.CrearTarea(tarea);
+                return CreatedAtAction(nameof(Get), new { id = nuevoTarea.Id }, nuevoTarea);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         // PUT api/Tarea/5
-        
         [HttpPut("{id}")]
         public ActionResult<Tarea> Put(int id, [Bind("Id,Nombre,Descripcion,Prioridad,IdEstado")] Tarea tarea)
         {
+            int codigo = validarTarea(tarea);
+
+            if (codigo > 0)
+                return StatusCode(codigo);
+
             var TareaActualizado = _TareaService.ActualizarTarea(id, tarea);
             if (TareaActualizado == null)
             {
