@@ -10,5 +10,6 @@ namespace APITareas.Data
         }
 
         public DbSet<Tarea> Tarea { get; set; }
+        public DbSet<Estado> VW_TAREAS_POR_ESTADO { get; set; }
     }
 }

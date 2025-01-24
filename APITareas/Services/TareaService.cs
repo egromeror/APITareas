@@ -26,6 +26,13 @@ namespace APITareas.Services
             return _context.Tarea.FirstOrDefault(p => p.Id == id);
         }
 
+        public List<Tarea> ObtenerPorEstado(int id)
+        {
+            return _context.Tarea.Where(p => p.IdEstado == id).ToList();
+        }
+
+        
+
         public Tarea CrearTarea(Tarea Tarea)
         {
             _context.Tarea.Add(Tarea);

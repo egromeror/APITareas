@@ -20,6 +20,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 builder.Services.AddControllers();
 builder.Services.AddScoped<ITareaService, TareaService>();
+builder.Services.AddScoped<IEstadoService, EstadoService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

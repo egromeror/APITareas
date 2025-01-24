@@ -17,6 +17,7 @@ namespace APITareas.Controllers
         }
 
         // GET api/Tarea
+        
         [HttpGet]
         public ActionResult<IEnumerable<Tarea>> Get()
         {
@@ -24,6 +25,7 @@ namespace APITareas.Controllers
         }
 
         // GET api/Tarea/5
+        
         [HttpGet("{id}")]
         public ActionResult<Tarea> Get(int id)
         {
@@ -35,7 +37,20 @@ namespace APITareas.Controllers
             return Ok(Tarea);
         }
 
+        // GET api/Tarea/Estado/5
+        [HttpGet("[action]/{idestado}")]
+        public ActionResult<Tarea> Estado(int idestado)
+        {
+            var Tarea = _TareaService.ObtenerPorEstado(idestado);
+            if (Tarea == null)
+            {
+                return NotFound();
+            }
+            return Ok(Tarea);
+        }
+
         // POST api/Tarea
+        
         [HttpPost]
         public ActionResult<Tarea> Post([Bind("Id,Nombre,Descripcion,Prioridad,IdEstado")] Tarea tarea)
         {
@@ -44,6 +59,7 @@ namespace APITareas.Controllers
         }
 
         // PUT api/Tarea/5
+        
         [HttpPut("{id}")]
         public ActionResult<Tarea> Put(int id, [Bind("Id,Nombre,Descripcion,Prioridad,IdEstado")] Tarea tarea)
         {
@@ -56,6 +72,7 @@ namespace APITareas.Controllers
         }
 
         // DELETE api/Tarea/5
+        
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {

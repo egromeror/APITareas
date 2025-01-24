@@ -1,5 +1,25 @@
 [
   {
+    "ContainingType": "APIEstados.Controllers.EstadoController",
+    "Method": "Get",
+    "RelativePath": "api/Estado",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[APITareas.Models.Estado, APITareas, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "APITareas.Controllers.TareaController",
     "Method": "Get",
     "RelativePath": "api/Tarea",
@@ -117,6 +137,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "APITareas.Controllers.TareaController",
+    "Method": "Estado",
+    "RelativePath": "api/Tarea/Estado/{idestado}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idestado",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "APITareas.Models.Tarea",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "APITareas.Controllers.WeatherForecastController",
